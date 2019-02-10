@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TechTalentBlog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+  
+   <%= yield %>
+      
+      <!-- index.html.erb HTML Really starts here--> 
+
+      <% if user_signed_in? %>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class:"btn btn-danger"%>
+
+        <%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-primary"%>
+
+        <%= gravatar_tag current_user.email %>
+        <% if current_user.avatar.url.blank? == false %>
+        <%= image_tag current_user.avatar.url, size: 40 %> 
+        <% end %>
+      <% end %>
+ 
+    
+  </body>
+</html>
+
+
+
